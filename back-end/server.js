@@ -3,6 +3,18 @@ const bodyParser = require("body-parser");
 
 const app = express();
 
+const cors = function (res, req) {
+    res.setHeader('Access-Control-Allow-Origin', '*')
+};
+
+const httpHandler = function (req, res) {
+    console.log(req.method + ': ' + req.url)
+    if (req.url === '/' && req.method === "POST") {
+        res.setHeader('Access-Control-Allow-Origin', '*')
+        getIndex(req, res);
+    }
+};
+
 // parse requests of content-type: application/json
 app.use(bodyParser.json());
 

@@ -68,10 +68,11 @@ class Register extends Component {
                                 <div>
                                     <select
                                         name="gender" value={this.state.gender}
-                                        className="form-control form-control-lg"
+                                        className="form-control form-control-lg" onChange={this.onChange}
                                     >
-                                        <option value="Feminin">Féminin</option>
-                                        <option value="Masculin">Masculin</option>
+                                        <option value="Feminin" onChange={this.onChange}>Féminin</option>
+                                        <option value="Masculin" onChange={this.onChange}>Masculin</option>
+
                                     </select>
 
                                 </div>
