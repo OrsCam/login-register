@@ -7,9 +7,9 @@ class Register extends Component {
     constructor() {
         super();
         this.state = {
-            firstName: "",
-            lastName: "",
-            gender: "",
+            prenom: "",
+            nom: "",
+            sexe: "",
             email: "",
             password: "",
             tel: "",
@@ -23,9 +23,9 @@ class Register extends Component {
     onSubmit(e) {
         e.preventDefault();
         const newUser = {
-            firstName: this.state.firstName,
-            lastName: this.state.lastName,
-            gender: this.state.gender,
+            prenom: this.state.prenom,
+            nom: this.state.nom,
+            sexe: this.state.sexe,
             email: this.state.email,
             password: this.state.password,
             tel: this.state.tel,
@@ -48,10 +48,9 @@ class Register extends Component {
                                         type="text"
                                         className="form-control form-control-lg"
                                         placeholder="Votre prénom"
-                                        name="firstName"
-                                        value={this.state.firstName}
+                                        name="prenom"
+                                        value={this.state.prenom}
                                         onChange={this.onChange}
-                                        required
                                     />
                                 </div>
                                 <div className="form-group">
@@ -59,20 +58,18 @@ class Register extends Component {
                                         type="text"
                                         className="form-control form-control-lg"
                                         placeholder="Votre nom"
-                                        name="lastName"
-                                        value={this.state.lastName}
+                                        name="nom"
+                                        value={this.state.nom}
                                         onChange={this.onChange}
-                                        required
                                     />
                                 </div>
                                 <div>
                                     <select
-                                        name="gender" value={this.state.gender}
-                                        className="form-control form-control-lg" onChange={this.onChange}
-                                    >
-                                        <option value="Feminin" onChange={this.onChange}>Féminin</option>
-                                        <option value="Masculin" onChange={this.onChange}>Masculin</option>
-
+                                        name="sexe" value={this.state.sexe} onChange={this.onChange}
+                                        className="form-control form-control-lg">
+                                        <option value="No"></option>
+                                        <option value="Feminin">Féminin</option>
+                                        <option value="Masculin">Masculin</option>
                                     </select>
 
                                 </div>
@@ -80,7 +77,7 @@ class Register extends Component {
                                     <input
                                         type="email"
                                         className="form-control form-control-lg"
-                                        placeholder="Adresse mail"
+                                        placeholder="Adresse email"
                                         name="email"
                                         value={this.state.email}
                                         onChange={this.onChange}

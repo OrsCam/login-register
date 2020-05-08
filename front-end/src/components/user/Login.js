@@ -24,7 +24,7 @@ class Login extends Component {
         this.props.login(LoginRequest);
     }
     onChange(e) {
-        this.setState({ [e.target.name]: e.target });
+        this.setState({ [e.target.name]: e.target.value });
     }
     render() {
         return (
