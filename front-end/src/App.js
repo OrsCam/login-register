@@ -8,6 +8,23 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Provider } from "react-redux";
 import store from "./store";
+import setJWTToken from './utils/setJWTToken';
+import jwt_decode from "jwt-decode";
+import { SET_CURRENT_USER } from './actions/types';
+//Récupération du token stocké en local
+const jwtToken = localStorage.jwtToken;
+
+if (jwtToken) {
+  setJWTToken(jwtToken);
+  const decodedJwtToken = jwt_decode(jwtToken);
+  store.dispatch({
+    type: SET_CURRENT_USER,
+    payload: decodedJwtToken,
+  });
+  const currentTime = Date.now() / 1000;
+  if (decodedJwtToken.exp < currentTime) {
+  }
+};
 
 class App extends Component {
   render() {
@@ -26,8 +43,4 @@ class App extends Component {
   }
 }
 
-
 export default App;
-
-
-

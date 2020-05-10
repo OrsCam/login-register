@@ -14,6 +14,10 @@ class Login extends Component {
         this.onChange = this.onChange.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
     }
+    componentWillReceiveProps(nextProps) {
+        console.log("Props : ", nextProps);
+    }
+
     onSubmit(e) {
         e.preventDefault();
         const LoginRequest = {
@@ -32,7 +36,7 @@ class Login extends Component {
                 <div className="container">
                     <div className="row">
                         <div className="col-md-8 m-auto">
-                            <h1 className="display-4 text-center">Login</h1>
+                            <h1 className="display-4 text-center">Log In</h1>
                             <form onSubmit={this.onSubmit}>
                                 <div className="form-group">
                                     <input
@@ -72,4 +76,4 @@ const mapStateToProps = (state) => ({
     errors: state.errors,
 })
 
-export default connect(null, { login })(Login);
+export default connect(mapStateToProps, { login })(Login);
