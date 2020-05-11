@@ -11,6 +11,7 @@ import store from "./store";
 import setJWTToken from './utils/setJWTToken';
 import jwt_decode from "jwt-decode";
 import { SET_CURRENT_USER } from './actions/types';
+import { logout } from "./actions/userActions";
 //Récupération du token stocké en local
 const jwtToken = localStorage.jwtToken;
 
@@ -23,6 +24,8 @@ if (jwtToken) {
   });
   const currentTime = Date.now() / 1000;
   if (decodedJwtToken.exp < currentTime) {
+    store.dispatch(logout());
+    window.location.href = "/";
   }
 };
 

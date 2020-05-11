@@ -21,6 +21,7 @@ export const register = (user, history) => async (dispatch) => {
 export const login = (LoginRequest) => async (dispatch) => {
     try {
         const res = await axios.post("http://localhost:8001/api/user/login", LoginRequest);
+
         // Extraction du token
         const { token } = res.data;
         // Stockage du token en localStorage
@@ -30,6 +31,7 @@ export const login = (LoginRequest) => async (dispatch) => {
         dispatch({
             type: SET_CURRENT_USER,
             payload: decoded,
+
         });
     } catch (err) {
         dispatch({
@@ -37,6 +39,15 @@ export const login = (LoginRequest) => async (dispatch) => {
             payload: err,
         });
     }
-}
+};
+
+export const logout = () => (dispatch) => {
+    localStorage.removeItem("jwtToken");
+    setJWTToken(false);
+    dispatch({
+        type: SET_CURRENT_USER,
+        payload: {},
+    })
+};
 
 
