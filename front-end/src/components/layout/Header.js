@@ -24,7 +24,7 @@ class Header extends Component {
 
                 <ul className="navbar-nav ml-auto">
                     <li className="nav-item">
-                        <Link className="nav-link" to="/dashboard">{this.props.security.user.result.prenom}
+                        <Link className="nav-link" to="/dashboard">{validToken ? user.result.prenom + " " + user.result.nom : ""}
                         </Link>
                     </li>
                     <li className="nav-item">
