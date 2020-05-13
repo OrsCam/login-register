@@ -13,6 +13,7 @@ class Register extends Component {
             email: "",
             password: "",
             tel: "",
+            errors: {},
         };
         this.onChange = this.onChange.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
@@ -31,10 +32,20 @@ class Register extends Component {
             tel: this.state.tel,
         };
         //console.log(newUser)
-        this.props.register(newUser, this.props.history)
+        this.props.register(newUser, this.props.history);
+    }
+
+    componentWillReceiveProps(nextProps) {
+        console.log("Next Props : ", nextProps);
+        if (nextProps.errors.success == 0) {
+            this.setState({ errors: nextProps.errors });
+        } else if (nextProps.errors.response.data.success == 0) {
+            this.setState({ errors: nextProps.errors.response.data });
+        }
     }
 
     render() {
+        const { errors } = this.state;
         return (
             <div className="register">
                 <div className="container">
@@ -42,6 +53,7 @@ class Register extends Component {
                         <div className="col-md-8 m-auto">
                             <h1 className="display-4 text-center">Inscription</h1>
                             <p className="lead text-center">Créer votre compte</p>
+                            {errors.success === 0 && (<div className="alert alert-danger">{errors.message}</div>)}
                             <form onSubmit={this.onSubmit}>
                                 <div className="form-group">
                                     <input
@@ -114,5 +126,11 @@ class Register extends Component {
 }
 Register.propTypes = {
     register: PropTypes.func.isRequired,
-}
-export default connect(null, { register })(Register);
+    errors: PropTypes.object.isRequired,
+};
+
+const mapStateToProps = state => ({
+    errors: state.errors,
+})
+
+export default connect(mapStateToProps, { register })(Register);

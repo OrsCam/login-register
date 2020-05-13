@@ -8,7 +8,14 @@ export const register = (user, history) => async (dispatch) => {
     try {
         const res = await axios.post("http://localhost:8001/api/user", user)
         console.log(res);
-        history.push("/dashboard");
+        if (res.data.success == 0) {
+            dispatch({
+                type: GET_ERRORS,
+                payload: res.data,
+            });
+        } else {
+            history.push("/login");
+        }
     } catch (err) {
         dispatch({
             type: GET_ERRORS,

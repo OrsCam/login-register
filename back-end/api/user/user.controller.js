@@ -14,7 +14,7 @@ module.exports = {
             if (results) {
                 return res.json({
                     success: 0,
-                    message: "Cette adresse est utilisée par un autre utilisateur.",
+                    message: "Cette adresse est déjà utilisée par un autre utilisateur.",
                 });
             } else {
                 if (body.prenom && body.nom && body.password && body.email) {
